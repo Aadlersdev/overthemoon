@@ -70,7 +70,8 @@
             }
         }
     </style>
-     <script>
+
+    <script>
         // Function to save 'utm_campaign' from URL to local storage and update counter
         function saveUtmCampaign() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -99,9 +100,9 @@
             const utmCampaignValue = localStorage.getItem('utm_campaign');
             const counter = parseInt(localStorage.getItem('utm_campaign_counter')) || 0;
 
-            // Show the pop-up if the counter is greater than 0
+            // Show the pop-up if the counter is greater than 1 (since we start the counter at 0)
             if (utmCampaignValue && counter > 1) {
-                alert(`Hi ${utmCampaignValue} employee, it’s great to see you again! You’ve been selected for a free beer with us. Just call us at `+ '09100623334' href="tel:+919100623334");
+                alert(`Hi ${utmCampaignValue} employee, it’s great to see you again! You’ve been selected for a 25% off on the total bill. Just call us at +91 9100623334.`);
             }
         }
 
@@ -111,7 +112,6 @@
             showPopupIfCampaignExists();  // Show the popup if conditions are met
         });
     </script>
-
 </head>
 <body>
     <!-- Logo Section -->
