@@ -70,6 +70,48 @@
             }
         }
     </style>
+     <script>
+        // Function to save 'utm_campaign' from URL to local storage and update counter
+        function saveUtmCampaign() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const utmCampaignValue = urlParams.get('utm_campaign');
+            
+            // If the 'utm_campaign' parameter is present in the URL
+            if (utmCampaignValue) {
+                // Check if the campaign already exists in local storage
+                const storedCampaign = localStorage.getItem('utm_campaign');
+                if (storedCampaign !== utmCampaignValue) {
+                    // If it's a new campaign, save it and set counter to 0
+                    localStorage.setItem('utm_campaign', utmCampaignValue);
+                    localStorage.setItem('utm_campaign_counter', 0); // Reset counter to 0
+                    console.log('New UTM Campaign saved:', utmCampaignValue);
+                }
+            }
+
+            // Always update the counter if a campaign exists in local storage
+            const currentCounter = parseInt(localStorage.getItem('utm_campaign_counter')) || 0;
+            localStorage.setItem('utm_campaign_counter', currentCounter + 1);
+            console.log('UTM Campaign counter incremented:', currentCounter + 1);
+        }
+
+        // Function to show the pop-up if the counter is greater than 0
+        function showPopupIfCampaignExists() {
+            const utmCampaignValue = localStorage.getItem('utm_campaign');
+            const counter = parseInt(localStorage.getItem('utm_campaign_counter')) || 0;
+
+            // Show the pop-up if the counter is greater than 0
+            if (utmCampaignValue && counter > 1) {
+                alert(`Hi ${utmCampaignValue} employee, it’s great to see you again! You’ve been selected for a free beer with us. Just call us at `+ '09100623334' href="tel:+919100623334");
+            }
+        }
+
+        // Run functions on page load
+        document.addEventListener("DOMContentLoaded", function() {
+            saveUtmCampaign();  // Save UTM campaign and update counter
+            showPopupIfCampaignExists();  // Show the popup if conditions are met
+        });
+    </script>
+
 </head>
 <body>
     <!-- Logo Section -->
